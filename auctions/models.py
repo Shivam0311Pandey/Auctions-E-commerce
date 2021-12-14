@@ -16,7 +16,7 @@ class Auction(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     starting_bid = models.IntegerField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="listings_of_category")
     image = models.ImageField(upload_to = 'images', blank=True, null=True)
     comments = models.ManyToManyField('Comment', blank=True, related_name="comment_on_auction")
     latest_bid = models.ForeignKey('Bid', on_delete=models.CASCADE, related_name="if_bid_is_last")

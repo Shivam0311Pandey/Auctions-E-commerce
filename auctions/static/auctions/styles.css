@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 :root{
-    
+
     --Roboto: "Roboto", sans-serif;
     --Marker: "Permanent Marker";
     --Sans: "Open Sans", sans-serif;
@@ -38,14 +38,13 @@ body {
     border: 2px solid whitesmoke;
     border-radius: 1rem;
     padding: 0px;
-    max-width: 5rem;
+    max-width: 7rem;
     text-align: center;
 }
 .navlogin{
     color: #ef9273 !important;
     background-color: #fff9f8 !important;
-    min-width: 4rem !important;
-    padding: 0px;
+    max-width: 5rem;
 }
  a.navlisting:hover{
     color: #ef9273 !important;
@@ -168,6 +167,10 @@ a.navlogin:hover{
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
+
+/* Create listing */
+
+
 
 @media only screen and (max-width: 700px){
     .loginframe {

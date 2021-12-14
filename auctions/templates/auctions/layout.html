@@ -20,7 +20,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active navlisting" aria-current="page" href="#">Listing</a>
+                  <a class="nav-link active navlisting" aria-current="page" href="{% url 'newlisting' %}" style="margin-right: 1rem;">New Listing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active navlisting" aria-current="page" href="{% url 'newlisting' %}">My Listing</a>
                 </li>
               </ul>
               <div class="d-flex">
@@ -31,10 +34,10 @@
                     </li>
                   {% else %}
                     <li class="nav-item">
-                      <a class="nav-link active navlisting navlogin" aria-current="page" href="{% url 'login' %}"  style="margin-right: 1rem; margin-bottom: 0.5rem;">Log In</a>
+                      <a class="nav-link active navlisting navlogin" aria-current="page" href="{% url 'login' %}"  style="margin-right: 1rem; padding: 0 0.5rem;">Log In</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active navlisting navlogin" aria-current="page" href="#">Sign In</a>
+                      <a class="nav-link active navlisting navlogin" aria-current="page" href="#" style="margin-right: 1rem; padding: 0 0.5rem;">Sign In</a>
                     </li>
                   {% endif %}
                 </ul>
