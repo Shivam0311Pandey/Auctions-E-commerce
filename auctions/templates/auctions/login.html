@@ -5,7 +5,7 @@
     <div class="loginModal">
         <div class="loginframe">
             <a class="close" href="{% url 'index' %}">&times;</a>
-            <div class="loginheading">Log In </div>
+            <div class="loginheading"><h2>Log In </h2></div>
 
             <div class="loginContent">
                 {% if message %}
@@ -14,15 +14,21 @@
 
                 <form action="{% url 'login' %}" method="post">
                     {% csrf_token %}
-                    <div class="forminput_login">
-                        <input autofocus type="text" name="username" placeholder="Username" required>
-                    </div>
-                    <div class="forminput_login">
-                        <input type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="logincentre">
-                        <input class="loginsubmit_btn" type="submit" value="LogIn">
-                    </div>
+                    <p>
+                        <div class="forminput_login">
+                            <input autofocus type="text" name="username" placeholder="Username" required>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="forminput_login">
+                            <input type="password" name="password" placeholder="Password" required>
+                        </div>
+                    </p>
+                    <p>
+                        <div class="logincentre">
+                            <input class="loginsubmit_btn" type="submit" value="LogIn">
+                        </div>
+                    </p>
                 </form>
             </div>
             <div>

@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+import json
 
 from .models import User, Auction, Category, Bid, Comment, Watchlist
+from .forms import ListingForm
 
 
 def index(request):
@@ -66,4 +68,36 @@ def register(request):
 
 @login_required(login_url='/login')
 def newlisting(request):
-    pass
+    if request.method == "POST":
+        form = ListingForm(request.POST, request.FILES)
+        if form.is_valid():
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            image = form.cleaned_data['image']
+            starting_bid = form.cleaned_data['starting_bid']
+            category = form.cleaned_data['category']
+
+            listingCreated = Auction.objects.create(
+                user=request.user,
+                title=title,
+                description=description,
+                image=image,
+                starting_bid=starting_bid,
+                category=category
+            )
+            return HttpResponseRedirect(reverse("index"))
+    else:
+        return render(request, "auctions/newlisting.html", {
+            'form': ListingForm()
+        })
+
+def addCategory(request):
+    data = json.loads(request.body)
+    newcategory = data["newCategory"]
+    newcategory= newcategory.capitalize()
+    try:
+        categoryAdded = Category.objects.create(category = newcategory)
+        categoryAdded.save()
+    except IntegrityError:
+        return JsonResponse({"str":""})
+    return JsonResponse({"str":"success"})

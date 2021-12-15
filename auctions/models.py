@@ -6,7 +6,7 @@ class User(AbstractUser):
     pass
 
 class Category(models.Model):
-    category = models.CharField(max_length=64)
+    category = models.CharField(max_length=64, unique=True, blank=False)
 
     def __str__(self):
         return f"{self.category}"
@@ -19,7 +19,7 @@ class Auction(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="listings_of_category")
     image = models.ImageField(upload_to = 'images', blank=True, null=True)
     comments = models.ManyToManyField('Comment', blank=True, related_name="comment_on_auction")
-    latest_bid = models.ForeignKey('Bid', on_delete=models.CASCADE, related_name="if_bid_is_last")
+    latest_bid = models.ForeignKey('Bid', on_delete=models.CASCADE, related_name="if_bid_is_last", blank=True, null=True)
     date = models.DateTimeField(default=timezone.now)
     close = models.BooleanField(default=False)
 

@@ -1,7 +1,48 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+<div class="container-fluid content-below-navbar">
+    <div class="row">
+      <div class="col-md-7 ">
+        <div class="content-bn">
+          {% if user.is_authenticated %}
+            Welcome <strong class="name-content-bn">{{ user.username }}</strong>!
+          {% else %}
+            Welcome!
+          {% endif %}
+        </div>
+        <div>eBay-like e-commerce auction site that will allow you to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”</div>
+      </div>
+      <div class="col-md-5 img">              
+          <div class="imgborder"></div>          
+      </div>
+    </div>
+  </div>
 
-    TODO
+  <h1 class="hello">Auctions</h1>
+  <div>
+      {% if user.is_authenticated %}
+          Signed in as <strong>{{ user.username }}</strong>.
+      {% else %}
+          Not signed in.
+      {% endif %}
+  </div>
+  <ul class="nav">
+      <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+      </li>
+      {% if user.is_authenticated %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+          </li>
+      {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'login' %}">Log In</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'register' %}">Register</a>
+          </li>
+      {% endif %}
+  </ul>
+  <hr>
 {% endblock %}
