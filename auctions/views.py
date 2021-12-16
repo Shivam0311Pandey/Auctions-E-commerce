@@ -11,7 +11,12 @@ from .forms import ListingForm
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    auctions = Auction.objects.all().order_by('id').reverse()
+    categories = Category.objects.all().order_by('category')
+    return render(request, "auctions/index.html", {
+        'auctions': auctions,
+         'categories': categories
+    })
 
 
 def login_view(request):
