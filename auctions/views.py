@@ -106,3 +106,15 @@ def addCategory(request):
     except IntegrityError:
         return JsonResponse({"str":""})
     return JsonResponse({"str":"success"})
+
+def viewCategory(request, category):
+    categories = Category.objects.exclude(category= category).all().order_by('category')
+    categoryid = Category.objects.get(category= category)
+    auctions= Auction.objects.filter(category= categoryid).order_by('id').reverse()
+    print(auctions)
+    print(categories)
+    return render(request, 'auctions/viewCategory.html', {
+        'category': category,
+        'categories': categories,
+        'auctions': auctions
+    })
