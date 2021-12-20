@@ -24,7 +24,7 @@ class Auction(models.Model):
     close = models.BooleanField(default=False)
 
     def dateOfListing(self):
-        return self.date.strftime('%b.%d, %Y, %I:%M %p.')
+        return self.date.strftime('%b.%d, %Y, %I:%M %p')
 
     def __str__(self):
         return f"{self.title}"

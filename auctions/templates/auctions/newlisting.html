@@ -3,10 +3,10 @@
 
 {% block body %}
 
-<div class="container">
+<div class="container" style="margin-top: 72px; padding-top: 1rem;">
     <div class="formborder">
     <div class="listingFormheading"><h2>New Listing</h2></div>
-    <form id="addCategoryForm">
+    <form onsubmit="addCategoryFunction()" id="addCategoryForm">
         {% csrf_token %}
         <p class="formblock">
             <label class="labelform" >Add Category:</label>

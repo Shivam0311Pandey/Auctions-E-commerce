@@ -1,11 +1,12 @@
 {% extends "auctions/layout.html" %}
-
+{% load static %}
 {% block body %}
 
+<div class="login-img"><img class="img-fluid" src="{% static 'auctions/log_in2.svg' %}" alt="login image"></div>
     <div class="loginModal">
         <div class="loginframe">
             <a class="close" href="{% url 'index' %}">&times;</a>
-            <div class="loginheading"><h2>Log In </h2></div>
+            <div class="loginheading"><h3>Log In </h3></div>
 
             <div class="loginContent">
                 {% if message %}
@@ -36,8 +37,5 @@
             </div>
         </div>
     </div>
-        
-
-    <h2>Login</h2>
 
 {% endblock %}

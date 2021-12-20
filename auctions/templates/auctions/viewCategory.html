@@ -7,7 +7,7 @@
     <button class="btn btn-light  dropdown-toggle hello" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
      <strong> {{ category }} </strong>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+    <ul class="dropdown-menu dropdown-menu-end dropdown-category" aria-labelledby="dropdownMenuButton1">
       <li><a class="dropdown-item" href="{% url 'index' %}">All</a></li>
       {% for category in categories %}
         <li><a class="dropdown-item" href="{% url 'viewCategory' category.category %}">{{category}}</a></li>
@@ -34,22 +34,22 @@
       <ul class="list-group list-group-flush">
         {% if auction.latest_bid %}
           {% if auction.close == True %}
-            <li class="list-group-item currentbid">Sold for: ${{auction.latest_bid|floatformat:2}}</li>
+            <li class="list-group-item currentbid item-sold">Sold for: ${{auction.latest_bid.bid|floatformat:2}}</li>
           {% else %}
-            <li class="list-group-item currentbid">Current Bid: ${{auction.latest_bid|floatformat:2}}</li>
+            <li class="list-group-item currentbid">Current Bid: ${{auction.latest_bid.bid|floatformat:2}}</li>
           {% endif %}
         {% else %}
           <li class="list-group-item currentbid">Opening Bid: ${{auction.starting_bid|floatformat:2}}</li>
         {% endif %}
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link btn btn-listing">Listing</a>
+        <a href="{% url 'viewAuction' auction.id %}" class="card-link btn btn-listing shadow-none">Listing</a>
         <div class="card-footer text-muted">{{auction.dateOfListing}}</div>
       </div>
      </div>
      {% endfor %}
      {% else %}
-        <div  class="no-content"><img class="img-fluid" src="{% static 'auctions/no_content.svg' %}" alt="item image"></div>
+        <div  class="no-content" ><img class="img-fluid" style="max-height: 90%;" src="{% static 'auctions/no_content.svg' %}" alt="item image"></div>
     {% endif %}
    </div>
  </div>

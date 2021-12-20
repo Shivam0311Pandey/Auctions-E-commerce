@@ -2,20 +2,44 @@
 {% load static %}
 
 {% block body %}
-<div class="container-fluid content-below-navbar" style="margin-top: 72px; padding-top: 1rem;">
+<div class="container-fluid content-below-navbar" style="margin-top: 72px; padding-top: 2rem;">
     <div class="row">
-      <div class="col-md-7 ">
-        <div class="content-bn">
+      <div class="col-md-6 left-content">
+        <div class="content-bn container">
           {% if user.is_authenticated %}
-            Welcome <strong class="name-content-bn">{{ user.username }}</strong>!
+           <h1> Welcome <strong class="name-content-bn">{{ user.username }}</strong>!</h1>
           {% else %}
             Welcome!
           {% endif %}
         </div>
-        <div>eBay-like e-commerce auction site that will allow you to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist.”</div>
+        <div class="container" style="margin-top: 1.5rem;"><h4 style="width: 30rem;">eBay-like e-commerce auction site that will allow you to post auction listings, place bids on listings, comment on those listings, and add listings to a “watchlist”. For more details <a class="cs50" href="https://cs50.harvard.edu/web/2020/projects/2/commerce/">click here!</a></h4></div>
       </div>
-      <div class="col-md-5 img">              
-          <div class="imgborder"></div>          
+      <div class="col-md-6 img container" >              
+           <div class="container-fluid imgborder">
+            <div class="backgroundone"></div>
+            <div class="backgroundtwo"></div>
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="2750">
+                  <img src="/media/images/{{ first }}" class="d-block w-100" alt="item image">
+                </div>
+                {% for image in images %}
+                  <div class="carousel-item" data-bs-interval="2750">
+                    <img src="/media/images/{{ image }}" class="d-block w-100" alt="item image">
+                  </div>
+                {% endfor %}
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+
+          </div>           
       </div>
     </div>
   </div>
@@ -24,8 +48,7 @@
     <button class="btn btn-light  dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
       <strong>Category</strong>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-      <li><a class="dropdown-item" href="{% url 'index' %}">All</a></li>
+    <ul class="dropdown-menu dropdown-menu-end dropdown-category" aria-labelledby="dropdownMenuButton1">
       {% for category in categories %}
     <li><a class="dropdown-item" href="{% url 'viewCategory' category.category %}">{{category}}</a></li>
       {% endfor %}
@@ -49,16 +72,16 @@
       <ul class="list-group list-group-flush">
         {% if auction.latest_bid %}
           {% if auction.close == True %}
-            <li class="list-group-item currentbid">Sold for: ${{auction.latest_bid|floatformat:2}}</li>
+            <li class="list-group-item currentbid item-sold">Sold for: ${{auction.latest_bid.bid|floatformat:2}}</li>
           {% else %}
-            <li class="list-group-item currentbid">Current Bid: ${{auction.latest_bid|floatformat:2}}</li>
+            <li class="list-group-item currentbid">Current Bid: ${{auction.latest_bid.bid|floatformat:2}}</li>
           {% endif %}
         {% else %}
           <li class="list-group-item currentbid">Opening Bid: ${{auction.starting_bid|floatformat:2}}</li>
         {% endif %}
       </ul>
       <div class="card-body">
-        <a href="#" class="card-link btn btn-listing">Listing</a>
+        <a href="{% url 'viewAuction' auction.id %}" class="card-link btn btn-listing shadow-none">Listing</a>
         <div class="card-footer text-muted">{{auction.dateOfListing}}</div>
       </div>
      </div>
@@ -66,6 +89,10 @@
    </div>
  </div>
 
+ <hr>
+ {% if not request.user.is_authenticated %}
+  
+ {% endif %}
   <h1 class="hello">Auctions</h1>
   <div>
       {% if user.is_authenticated %}
@@ -92,4 +119,5 @@
       {% endif %}
   </ul>
   <hr>
+
 {% endblock %}
