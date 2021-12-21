@@ -77,6 +77,20 @@ a.navlogin:hover{
     z-index: 1 !important;
     min-width: 1.3rem;
 }
+.sign{
+    background-color: #ef9273;
+    z-index: 1;
+    width: 3rem;
+    height: 3.5rem;
+    position: fixed;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff9f8;
+    border-radius: 2px;
+}
 
 /* Index */
 
@@ -90,7 +104,7 @@ a.navlogin:hover{
     margin-bottom: 1rem;
 }
 .content-bn h1{
-    font-size: 3.5rem !important;
+    font-size: 3rem !important;
 }
 .content-bn h1 strong{
     color: #ef9273;
@@ -249,10 +263,6 @@ a.navlogin:hover{
     background-color: #fff9f8;
     animation-name: zoom;
     animation-duration: 0.6s;
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column; */
     text-align: center;
     padding: 2rem;
     position: relative;
@@ -283,7 +293,7 @@ input{
     background-color: white;
 }
 .forminput_login input{
-    width: 70%;
+    width: 75%;
 }
 .formInput:focus, input:focus{
     outline-color: #f7c9b9;

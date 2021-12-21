@@ -1,3 +1,12 @@
+document.querySelector('.sign').style.display= 'none';
+window.onscroll = () =>{
+  if(window.scrollY > window.innerHeight){
+    document.querySelector('.sign').style.display= 'flex';
+  } else{
+    document.querySelector('.sign').style.display= 'none';
+  }
+};
+
 function addremovewatchlist(item){
   const auctionId = item.getAttribute("data-auctionId");
   console.log(auctionId);
