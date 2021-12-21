@@ -200,6 +200,7 @@ def closeLisitng(request, auctionId):
         auction.save()
         return JsonResponse({'status':'success'})
 
+@login_required(login_url='/login')
 def myListing(request):
     user = request.user
     watchlist= Watchlist.objects.get(user=request.user)

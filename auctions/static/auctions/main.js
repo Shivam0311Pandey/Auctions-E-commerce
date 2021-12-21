@@ -37,7 +37,6 @@ document.querySelector('#submit').style.opacity= 0.8;
 function placebid(formdata){
   const auctionId = formdata.getAttribute("data-auctionId");
   const startingBid = parseFloat(formdata.getAttribute("data-startingBid"));
-  console.log(latestBid);
   console.log(parseInt(auctionId));
   console.log(startingBid);
   let latestBid = formdata.getAttribute("data-latestBid");
