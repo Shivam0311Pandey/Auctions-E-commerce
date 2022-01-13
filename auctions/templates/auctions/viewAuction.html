@@ -47,7 +47,7 @@
                 </form>
                 {% endif %}
                 {% if auction not in watchlist.auction.all %}
-                    <i class="bi bi-heart heart" id="xyz" data-auctionId="{{ auction.id }}" onclick="addremovewatchlist(this)"></i>
+                    <i class="bi bi-heart heart" data-auctionId="{{ auction.id }}" onclick="addremovewatchlist(this)"></i>
                 {% else %}
                     <i class="bi bi-heart-fill heart" data-auctionId="{{ auction.id }}" onclick="addremovewatchlist(this)"></i>
                 {% endif %}

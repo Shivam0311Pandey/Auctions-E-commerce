@@ -20,7 +20,7 @@ def index(request):
         watchlistno = watchlist.auction.count()
     else:
         watchlistno = '0'
-    path= "C:\\Users\HP\OneDrive\Desktop\commerce2\media\images"
+    path= "..\commerce2\media\images"
     imgList= os.listdir(path) 
     random.shuffle(imgList)
     first = imgList[0]

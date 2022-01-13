@@ -62,13 +62,13 @@ function closelisting(listing){
   window.location.reload();
 };
 
+
 function deletecomment(i){
   const commentId = i.dataset.comment;
   console.log(commentId);
   fetch(`deleteComment/${commentId}`)
   window.location.reload();
 };
-
 
 
 function addCategoryFunction(event){
