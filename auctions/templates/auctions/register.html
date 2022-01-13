@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div id="end" style="position: relative;" style="overflow: hidden;">
+    <img class="img-fluid" src="{% static 'auctions/register_background.png' %}" alt="register background" style="height: 100%; width:100%;">
+    <div class=" container register">
+      <h3 class="head-register">Sign In</h3>
+
+    {% if message %}
+        <div class="error-msg" style="margin-bottom: 0.5rem;">{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input autofocus class="form-control shadow-none field"  type="text" name="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <input class="form-control shadow-none field" type="email" name="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input class="form-control shadow-none field" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <input class="form-control shadow-none field" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Sign In">
+    </form>
+
+     <div style="margin-bottom: 1rem;"><a href="{% url 'login' %}">Already have an account?!</a></div>
+    </div>
+  </div>
+
+  <script>
+      const navHeight = document.querySelector('nav').offsetHeight;
+      document.querySelector('#end').style.height = `${window.innerHeight-navHeight-0.1}px`;
+      document.querySelector('#end').style.marginTop = `${navHeight}px`;
+  </script>
+{% endblock %}
