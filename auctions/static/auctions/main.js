@@ -1,18 +1,3 @@
-// if(window.innerWidth <= 1000){
-//   document.querySelector('.smallScreen').style.display = 'block';
-//   } else{
-//     document.querySelector('.smallScreen').style.display = 'none';
-// }
-// window.onresize = () => {
-//   console.log(window.innerWidth);
-//   if(window.innerWidth <= 1000){
-//     document.querySelector('.smallScreen').style.display = 'block';
-//     } else{
-//       document.querySelector('.smallScreen').style.display = 'none';
-//     }
-// }
-
-
 window.onscroll = () =>{
   if(window.scrollY > window.innerHeight){
     document.querySelector('.sign').style.transform= 'translateX(0)';
