@@ -8,11 +8,11 @@ window.onscroll = () =>{
 
 function addremovewatchlist(item){
   const auctionId = item.getAttribute("data-auctionId");
-  console.log(auctionId);
   fetch(`addremoveWatchlist/${auctionId}`)
   .then(response => response.json())
   .then(data =>{
-    window.location.reload();
+    item.classList.toggle("bi-heart-fill");
+    item.classList.toggle("bi-heart");
     document.querySelector('.watchlist-count').innerHTML = `${data.status}`;
   });
 };
@@ -20,19 +20,14 @@ function addremovewatchlist(item){
 function placebid(formdata){
   const auctionId = formdata.getAttribute("data-auctionId");
   const startingBid = parseFloat(formdata.getAttribute("data-startingBid"));
-  console.log(parseInt(auctionId));
-  console.log(startingBid);
   let latestBid = formdata.getAttribute("data-latestBid");
   if(latestBid == 'None'){
     latestBid = 0;
   } else{
     latestBid = parseFloat(latestBid);
   }
-  console.log(latestBid);
   const bid = parseFloat(document.querySelector('#newBid').value);
-  console.log(bid);
   if(bid>=startingBid && bid>latestBid && bid>0){
-    console.log('Yes!');
     const csrfToken = formdata.getElementsByTagName("input")[0].value;
     fetch('/auction/placeBid',{
       method: 'POST',
@@ -50,14 +45,12 @@ function placebid(formdata){
     event.preventDefault();
     formdata.querySelector('#bid-status').style.color= '#ff6666';
     formdata.querySelector('#bid-status').innerHTML='Not a valid bid!';
-    console.log('Not a valid bid!');
     formdata.querySelector('#newBid').value= "";
   }
 };
 
 function closelisting(listing){
   const auctionId = listing.getAttribute("data-auctionId");
-  console.log(auctionId);
   fetch(`/closeLisitng/${auctionId}`)
   window.location.reload();
 };
@@ -65,20 +58,16 @@ function closelisting(listing){
 
 function deletecomment(i){
   const commentId = i.dataset.comment;
-  console.log(commentId);
   fetch(`deleteComment/${commentId}`)
   window.location.reload();
 };
 
 
-function addCategoryFunction(event){
+function addCategoryFunction(){
   event.preventDefault();
   const newCategory = document.querySelector('#newCategory').value;
   const form = document.querySelector('#addCategoryForm');
   const csrfToken = form.getElementsByTagName("input")[0].value;
-  console.log(newCategory);
-  console.log(csrfToken);
-  console.log('Hello');
   fetch('/newlisting/addCategory', {
       method: 'POST',
       headers: {
@@ -87,7 +76,6 @@ function addCategoryFunction(event){
       },
       body: JSON.stringify({'newCategory': newCategory})
   })
-
   .then(response => response.json())
   .then(data => {
     if(data.str === ""){

@@ -20,7 +20,8 @@ def index(request):
         watchlistno = watchlist.auction.count()
     else:
         watchlistno = '0'
-    path= "..\commerce2\media\images"
+    DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    path = os.path.join(DIR, "./media/images")
     imgList= os.listdir(path) 
     random.shuffle(imgList)
     first = imgList[0]
