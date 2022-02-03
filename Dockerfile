@@ -3,4 +3,4 @@ WORKDIR /app
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . .
-CMD gunicorn django_auctions.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn --bind 0.0.0.0:$PORT wsgi:application
