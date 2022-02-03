@@ -64,7 +64,7 @@ MEDIA_URL = '/media/'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.djangojangoTemplates.D',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
