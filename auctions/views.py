@@ -164,7 +164,10 @@ def viewAuction(request, auctionId):
 def deleteListing(request, auctionId):
     auction = Auction.objects.get(id = auctionId)
     if auction.user == request.user:
+        DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        path = os.path.join(DIR, "./media/", auction.image.name)
         auction.delete()
+        os.remove(path)
         return HttpResponseRedirect(reverse("index"))
 
 def addComment(request, auctionId):
