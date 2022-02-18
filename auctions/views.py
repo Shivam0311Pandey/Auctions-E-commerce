@@ -167,7 +167,8 @@ def deleteListing(request, auctionId):
         DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         path = os.path.join(DIR, "./media/", auction.image.name)
         auction.delete()
-        os.remove(path)
+        if(os.path.isfile(path)):
+            os.remove(path)
         return HttpResponseRedirect(reverse("index"))
 
 def addComment(request, auctionId):
